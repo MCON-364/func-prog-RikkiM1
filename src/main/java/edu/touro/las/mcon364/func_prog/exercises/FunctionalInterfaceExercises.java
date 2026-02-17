@@ -2,6 +2,7 @@ package edu.touro.las.mcon364.func_prog.exercises;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -39,8 +40,8 @@ public class FunctionalInterfaceExercises {
      *
      */
     public static Supplier<Integer> currentYearSupplier() {
-      // TODO
-        return null;
+        Supplier<Integer> currentYearSupplier = () ->  LocalDate.now().getYear();
+        return currentYearSupplier;
     }
 
     /**
@@ -48,8 +49,8 @@ public class FunctionalInterfaceExercises {
      * between 1 and 100.
      */
     public static Supplier<Integer> randomScoreSupplier() {
-        // TODO
-        return null;
+        return () -> ThreadLocalRandom.current().nextInt(1, 100);
+
     }
 
     // =========================================================
@@ -61,8 +62,8 @@ public class FunctionalInterfaceExercises {
      * a string is all uppercase.
      */
     public static Predicate<String> isAllUpperCase() {
-        // TODO
-        return null;
+        return string -> isAllUpperCase().test(string);
+
     }
 
     /**
@@ -72,8 +73,7 @@ public class FunctionalInterfaceExercises {
      * Hint: consider chaining.
      */
     public static Predicate<Integer> positiveAndDivisibleByFive() {
-        // TODO
-        return null;
+     return  x -> x % 5 == 0 && x> 0;
     }
 
     // =========================================================
@@ -87,8 +87,7 @@ public class FunctionalInterfaceExercises {
      * Formula: F = C * 9/5 + 32
      */
     public static Function<Double, Double> celsiusToFahrenheit() {
-        // TODO
-        return null;
+      return C -> C * 9/5 + 32;
     }
 
     /**
@@ -98,9 +97,22 @@ public class FunctionalInterfaceExercises {
      * Bonus: Make it case-insensitive.
      */
     public static Function<String, Integer> countVowels() {
-        // TODO
-        return null;
+
+        Function<String, Integer> l = s -> {
+            int counter = 0;
+            for (int i = 0; i < s.length(); i++) {
+                char curr = s.charAt(i);
+                if (curr == 'a' || curr == 'e' || curr == 'i'
+                        || curr == 'o' || curr == 'u')
+                    counter++;
+            }
+            return counter;
+        };
+
+            return l;
+
     }
+
 
     // =========================================================
     // PART 4 — CONSUMERS
