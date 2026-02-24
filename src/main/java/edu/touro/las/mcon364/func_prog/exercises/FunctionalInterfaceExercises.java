@@ -127,7 +127,9 @@ public class FunctionalInterfaceExercises {
      */
     public static Consumer<String> starPrinter() {
         // TODO
-        return null;
+        Consumer<String> printer = p -> System.out.println("***" + p + "***");
+        printer.accept("Hello");
+        return printer;
     }
 
     /**
@@ -135,8 +137,9 @@ public class FunctionalInterfaceExercises {
      * of an integer.
      */
     public static Consumer<Integer> printSquare() {
-        // TODO
-        return null;
+     Consumer<Integer> printer = i -> System.out.println(i*i);
+        printer.accept(6);
+        return printer;
     }
 
     // =========================================================
@@ -155,7 +158,17 @@ public class FunctionalInterfaceExercises {
      *  - Print them
      */
     public static void processStrings(List<String> values) {
-        // TODO
+        Predicate<String> longerThan3 = s -> s.length() > 3;
+        Function<String, String> lower = String::toLowerCase;
+        Consumer<String> print = System.out::println;
+
+        for (String value : values) {
+
+            if (longerThan3.test(value)) {
+                String result = lower.apply(value);
+                print.accept(result);
+            }
+        }
     }
 
     /**
@@ -168,6 +181,14 @@ public class FunctionalInterfaceExercises {
      * Print only those above 70.
      */
     public static void generateAndFilterScores() {
-        // TODO
+        Supplier<Integer> diceRoll = () -> ThreadLocalRandom.current().nextInt(1, 100);
+      Predicate<Integer> isAbove = s -> s > 70;
+      Consumer<String> printer = System.out::println;
+
+      for(int i=0; i<5; i++){
+          int result= diceRoll.get();
+         isAbove.test(result);
+          printer.accept(String.valueOf(result));
+      }
     }
 }
