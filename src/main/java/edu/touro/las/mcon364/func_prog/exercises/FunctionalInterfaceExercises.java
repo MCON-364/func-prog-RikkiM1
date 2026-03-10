@@ -62,7 +62,7 @@ public class FunctionalInterfaceExercises {
      * a string is all uppercase.
      */
     public static Predicate<String> isAllUpperCase() {
-        return string -> isAllUpperCase().test(string);
+        return s -> s != null && s.equals(s.toUpperCase());
 
     }
 
@@ -73,7 +73,9 @@ public class FunctionalInterfaceExercises {
      * Hint: consider chaining.
      */
     public static Predicate<Integer> positiveAndDivisibleByFive() {
-     return  x -> x % 5 == 0 && x> 0;
+        Predicate<Integer> DivisibleByFive = x -> x % 5 == 0;
+        Predicate<Integer> positive = x -> x > 0;
+        return   DivisibleByFive.and(positive);
     }
 
     // =========================================================
