@@ -100,6 +100,7 @@ public class FunctionalInterfaceExercises {
      */
     public static Function<String, Integer> countVowels() {
 
+
         Function<String, Integer> l = s -> {
             int counter = 0;
             for (int i = 0; i < s.length(); i++) {
